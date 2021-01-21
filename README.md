@@ -1,4 +1,4 @@
-# Clifford Crypto
+# Clifford Password Management
 
 Ruby library for a password management application based on Clifford geometric algebra.
 
