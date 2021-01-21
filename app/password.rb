@@ -1,25 +1,23 @@
 module Clifford
   class Password
 
-    attr_accessor :x1, :x2, :b1, :b2, :p1, :p2, :value, :order, :level, :counter
+    attr_accessor :x1, :x2, :p1, :p2, :value, :order, :level, :counter
 
     def initialize
       @counter = 0
-      puts "@counter = #{@counter}"
+      # puts "@counter = #{@counter}"
       @order = (0..15).to_a.shuffle
-      puts "@order = #{@order}"
+      # puts "@order = #{@order}"
       generate_internal_multivectors
-      puts "@x1 = #{x1}"
-      puts "@x2 = #{x2}"
-      puts "@b1 = #{b1}"
-      puts "@b1 = #{b2}"
+      # puts "@x1 = #{x1}"
+      # puts "@x2 = #{x2}"
     end
 
     def generate_password(level = 1)
       @level = level
       @counter += 1
-      puts "@level = #{@level}"
-      puts "@counter = #{@counter}"
+      # puts "@level = #{@level}"
+      # puts "@counter = #{@counter}"
       generate_p1_and_p2
       multivector_to_printable_characters
     end
@@ -54,7 +52,7 @@ module Clifford
     end
 
     def generate_internal_multivectors
-      @x1,@x2,@b1,@b2 = Array.new(4){ generate_invertible_random_multivector }
+      @x1,@x2 = Array.new(4){ generate_invertible_random_multivector }
     end
 
     def validate_password_multivectors
@@ -85,16 +83,16 @@ module Clifford
         break if validations.uniq == [true]
       end
 
-      puts "d1 = #{d1}"
-      puts "d2 = #{d2}"
-
-      puts "@p1 = #{p1}"
-      puts "@p2 = #{p2}"
+      # puts "d1 = #{d1}"
+      # puts "d2 = #{d2}"
+      #
+      # puts "@p1 = #{p1}"
+      # puts "@p2 = #{p2}"
     end
 
     def multivector_to_printable_characters
       array = (@p1.data + @p2.data).values_at(*order)
-      puts "array = #{array}"
+      # puts "array = #{array}"
       @value = array.map{|number| number.chr}.join
     end
 
