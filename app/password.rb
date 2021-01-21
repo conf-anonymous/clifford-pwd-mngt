@@ -5,19 +5,13 @@ module Clifford
 
     def initialize
       @counter = 0
-      # puts "@counter = #{@counter}"
       @order = (0..15).to_a.shuffle
-      # puts "@order = #{@order}"
       generate_internal_multivectors
-      # puts "@x1 = #{x1}"
-      # puts "@x2 = #{x2}"
     end
 
     def generate_password(level = 1)
       @level = level
       @counter += 1
-      # puts "@level = #{@level}"
-      # puts "@counter = #{@counter}"
       generate_p1_and_p2
       multivector_to_printable_characters
     end
@@ -82,17 +76,10 @@ module Clifford
 
         break if validations.uniq == [true]
       end
-
-      # puts "d1 = #{d1}"
-      # puts "d2 = #{d2}"
-      #
-      # puts "@p1 = #{p1}"
-      # puts "@p2 = #{p2}"
     end
 
     def multivector_to_printable_characters
       array = (@p1.data + @p2.data).values_at(*order)
-      # puts "array = #{array}"
       @value = array.map{|number| number.chr}.join
     end
 
