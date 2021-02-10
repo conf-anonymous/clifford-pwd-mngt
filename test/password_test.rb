@@ -127,19 +127,16 @@ class TestPassword < Minitest::Test
     assert_equal [true], validations.uniq
   end
 
-  # def test_recover_p1_p2
-  #   password_original = Clifford::Password.new
-  #   value_original = password_original.generate_password
-  #   p1_original = password_original.p1
-  #   p2_original = password_original.p2
-  #
-  #   puts "value_original = #{value_original}"
-  #
-  #   password_test = Clifford::Password.new
-  #   p1_recovered, p2_recovered = password_test.recover_p1_p2(value_original)
-  #
-  #   assert_equal p1_original.data, p1_recovered.data
-  #   assert_equal p2_original.data, p2_recovered.data
-  # end
+  def test_recover_p1_p2
+    password = Clifford::Password.new
+    value_original = password.generate_password
+    p1_original = password.p1
+    p2_original = password.p2
+
+    p1_recovered, p2_recovered = password.recover_p1_p2(value_original)
+
+    assert_equal p1_original.data, p1_recovered.data
+    assert_equal p2_original.data, p2_recovered.data
+  end
 
 end
