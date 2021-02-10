@@ -112,4 +112,4 @@ which outputs
 => [false, 44, 23]
 ```
 
-meaning that the password `pwd3` is not valid, which throws off everything. We could just return `false` as the only meaninful answer, however we show what the resulting counter and level is, 44 and 23, respectly, so it is clear to see how off the result is in comparison to the actual instance configuration. The current counter of the instance is 4, and the random password is reporting a 44 counter. However the key here is that these two numbers don't pass the validations in the instance method `verify_password` method from the `Clifford::Password` class.
+meaning that the password `pwd3` is not valid, which throws off everything. We could just return `false` as the only meaninful answer, however we show what the resulting counter and level is, 44 and 23, respectively, so it is clear to see how off the result is in comparison to the actual instance configuration. The current counter of the instance is 4, and the random password is reporting a 44 counter. However the key here is that these two numbers don't pass the validations in the instance method `verify_password` method from the `Clifford::Password` class.
