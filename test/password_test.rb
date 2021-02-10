@@ -139,4 +139,15 @@ class TestPassword < Minitest::Test
     assert_equal p2_original.data, p2_recovered.data
   end
 
+  def test_multivector_to_printable_characters
+    sample_value = '"-zR<":Y$RC5i3lF'
+    password = Clifford::Password.new
+    password.x1 = Clifford::Multivector3DMod.new [71, 82, 100, 105, 71, 54, 41, 82], 127
+    password.x2 = Clifford::Multivector3DMod.new [49, 117, 63, 74, 73, 119, 16, 24], 127
+    password.value = sample_value
+    password.p1, password.p2 = password.recover_p1_p2(sample_value)
+
+    assert_equal password.multivector_to_printable_characters, password.value
+  end
+
 end
