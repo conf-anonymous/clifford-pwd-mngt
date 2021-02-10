@@ -150,4 +150,18 @@ class TestPassword < Minitest::Test
     assert_equal password.multivector_to_printable_characters, password.value
   end
 
+  def test_verify_password
+    password = Clifford::Password.new
+
+    pwd1 = password.generate_password(2)
+    pwd2 = password.generate_password(3)
+    pwd3 = password.generate_password(5)
+    fake_password = ':(dnzVfNJ$)i)CDp'
+
+    assert_equal [true,1,2], password.verify_password(pwd1)
+    assert_equal [true,2,3], password.verify_password(pwd2)
+    assert_equal [true,3,5], password.verify_password(pwd3)
+    assert_equal false, password.verify_password(fake_password)[0]
+  end
+
 end
